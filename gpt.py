@@ -23,7 +23,7 @@ gpt = Agent(name="gpt", seed="s2", port=8001, endpoint=["http://127.0.0.1:8001/s
 
 print("gpt address: ", gpt.address)
 
-OPENAI_API_KEY = "sk-proj-0wp1HShJs74Gz6nniTRaT3BlbkFJAhfkVChXzSCTOMKtDXxE"
+OPENAI_API_KEY = ""
 
 if OPENAI_API_KEY == "YOUR_OPENAI_API_KEY":
     raise Exception("You need to provide an API key for OPEN AI to use this example")
