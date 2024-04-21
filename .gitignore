@@ -1,5 +1,5 @@
-dependencies
-__pycache__
+dependencies/
+__pycache__/
 *.pyc
 aws_lambda_artifact.zip
-venv
+venv/
