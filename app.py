@@ -6,6 +6,7 @@ import json
 from uagents.context import send_sync_message
 from fastapi import FastAPI
 from models import *
+from fastapi.middleware.cors import CORSMiddleware
 #from mangum import Mangum
 
 # Create an agent
@@ -19,11 +20,19 @@ gpt_address = "agent1qfvtufcgjwc6laspzpaz3gj00tph6e5gdq7pgqzw78frhwpnrgfv2tug7np
 app = FastAPI()
 #handler = Mangum(app)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.post("/hint")
 async def hint(req: Request):
     req = Request(text=f'''Asking question to AI model agent: I'm playing a game\
-    where I want to give hints to a user to help them guess a food. I will\
-    ask you, ChatGPT, to generate the hints. Generate a hint for the food: {req.text}.''')
+    where I want to give vague hints to a user to help them guess a food. I will\
+    ask you, ChatGPT, to generate the vague hints. Generate a vague hint for the food: {req.text}. DO NOT MAKE IT OBVIOUS WHAT THE FOOD IS. Limit to 8 words max.''')
     print("req" + str(req))
     try:
         response = await send_sync_message(
